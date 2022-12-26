@@ -14,7 +14,9 @@ const server=http.createServer(app);
 const io=socketIO(server);
 
 
-
+app.get('/',(req,res)=> {
+    res.send("server running");
+})
 let users = [];
 
 const addUser = (userId, socketId) => {
