@@ -52,3 +52,7 @@ io.on("connection", (socket) => {
         io.emit("getUsers", users);
     });
 });
+
+app.listen(port,()=> {
+    console.log('connected to port')
+})
