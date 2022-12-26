@@ -1,19 +1,9 @@
-const http=require("http");
-const express =require("express");
-const cors = require("cors");
-const socketIO = require("socket.io");
+const io = require("socket.io")(8900, {
+    cors: {
+        origin: "https://buzztalker122.onrender.com",
+    },
+});
 
-const app=express();
-const port= process.env.PORT || 8900;
-
-
-app.use(cors());
-
-const server=http.createServer(app);
-
-const io=socketIO(server);
-
-//https://buzztalker122.onrender.com
 let users = [];
 
 const addUser = (userId, socketId) => {
@@ -35,7 +25,6 @@ io.on("connection", (socket) => {
 
     socket.on("addUser", (userId) => {
         addUser(userId, socket.id);
-        console.log("aU",users)
     });
 
     socket.on("sendMessage", ({ senderId, receiverId, text }) => {
@@ -53,7 +42,3 @@ io.on("connection", (socket) => {
         io.emit("getUsers", users);
     });
 });
-
-server.listen(port,()=> {
-    console.log('connected to port')
-})
