@@ -1,10 +1,19 @@
-const port = process.env.PORT || 8900;
+const http=require("http");
+const express =require("express");
+const cors = require("cors");
+const socketIO = require("socket.io");
 
-const io = require("socket.io")(port, {
-    cors: {
-        origin: "*",
-    },
-});
+const app=express();
+const port= process.env.PORT ;
+
+
+app.use(cors());
+
+const server=http.createServer(app);
+
+const io=socketIO(server);
+
+
 
 let users = [];
 
