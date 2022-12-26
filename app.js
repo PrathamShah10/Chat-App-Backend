@@ -13,7 +13,7 @@ const server=http.createServer(app);
 
 const io=socketIO(server);
 
-
+//https://buzztalker122.onrender.com
 app.get('/',(req,res)=> {
     res.send("server running");
 })
