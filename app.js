@@ -35,6 +35,7 @@ io.on("connection", (socket) => {
 
     socket.on("addUser", (userId) => {
         addUser(userId, socket.id);
+        console.log("after add",users)
     });
 
     socket.on("sendMessage", ({ senderId, receiverId, text }) => {
